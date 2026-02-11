@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DmiRials | Tech Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="matrixCanvas"></canvas>
+
+<header>
+    <h1>DmiRials</h1>
+    <p>Sysadmin | Backend | Infrastructure</p>
+
+    <div class="header-controls">
+        <a class="main-btn" href="https://github.com/DmiRials" target="_blank">
+            GitHub Profile
+        </a>
+
+        <div class="auth-buttons">
+            <a href="#" class="auth-btn login">Login</a>
+            <a href="#" class="auth-btn register">Register</a>
+        </div>
+    </div>
+</header>
+
+<section class="filter-section">
+    <h2>📚 Рекомендуемые проекты</h2>
+
+    <div class="filters">
+        <button data-filter="all">All</button>
+        <button data-filter="networking">Networking</button>
+        <button data-filter="devops">DevOps</button>
+        <button data-filter="backend">Backend</button>
+    </div>
+
+    <div id="projectsContainer" class="blocks"></div>
+</section>
+
+<footer>
+    © 2026 DmiRials
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
