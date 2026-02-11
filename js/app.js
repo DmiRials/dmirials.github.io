@@ -1,3 +1,6 @@
+/* =========================
+   Project Model
+========================= */
 class Project {
     constructor(title, description, category, link, icon) {
         this.title = title;
@@ -18,6 +21,9 @@ class Project {
     }
 }
 
+/* =========================
+   Project Manager
+========================= */
 class ProjectManager {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
@@ -38,18 +44,25 @@ class ProjectManager {
     }
 }
 
+/* =========================
+   Matrix Background (letters + numbers)
+========================= */
 class MatrixBackground {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext("2d");
 
-        this.letters = "01{}[]<>/\\";
         this.fontSize = 18;
 
         this.resize();
-        window.addEventListener("resize", () => this.resize());
+        window.addEventListener("resize", () => {
+            this.resize();
+            this.initializeDrops();
+        });
 
+        this.initializeCharacters();
         this.initializeDrops();
+
         setInterval(() => this.draw(), 80);
     }
 
@@ -58,8 +71,18 @@ class MatrixBackground {
         this.canvas.height = window.innerHeight;
     }
 
+    initializeCharacters() {
+        const numbers = "0123456789";
+        const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lower = "abcdefghijklmnopqrstuvwxyz";
+        const symbols = "{}[]<>/\\@#$%^&*";
+
+        this.characters = (numbers + upper + lower + symbols).split("");
+    }
+
     initializeDrops() {
         this.columns = Math.floor(this.canvas.width / this.fontSize);
+
         this.drops = Array(this.columns)
             .fill(0)
             .map(() =>
@@ -76,10 +99,10 @@ class MatrixBackground {
 
         for (let i = 0; i < this.drops.length; i++) {
 
-            if (Math.random() > 0.98) continue;
+            if (Math.random() > 0.97) continue;
 
-            const text = this.letters[
-                Math.floor(Math.random() * this.letters.length)
+            const text = this.characters[
+                Math.floor(Math.random() * this.characters.length)
             ];
 
             this.ctx.fillText(
@@ -88,7 +111,10 @@ class MatrixBackground {
                 this.drops[i] * this.fontSize
             );
 
-            if (this.drops[i] * this.fontSize > this.canvas.height && Math.random() > 0.975) {
+            if (
+                this.drops[i] * this.fontSize > this.canvas.height &&
+                Math.random() > 0.975
+            ) {
                 this.drops[i] = 0;
             }
 
@@ -96,6 +122,10 @@ class MatrixBackground {
         }
     }
 }
+
+/* =========================
+   Initialization
+========================= */
 
 const manager = new ProjectManager("projectsContainer");
 
