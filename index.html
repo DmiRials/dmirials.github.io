@@ -4,44 +4,91 @@
     <meta charset="UTF-8">
     <title>DmiRials | Tech Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="home-page site-page">
 
 <canvas id="matrixCanvas"></canvas>
 
-<header>
-    <h1>DmiRials</h1>
-    <p>Sysadmin | Backend | Infrastructure</p>
+<div class="page-shell">
+    <div class="global-site-header">
+        <div class="top-nav">
+            <div class="brand">DmiRials</div>
 
-    <div class="header-controls">
-        <a class="main-btn" href="https://github.com/DmiRials" target="_blank">
-            GitHub Profile
-        </a>
+            <nav class="site-nav" aria-label="Global navigation">
+                <a href="index.html">Главная</a>
+                <a href="#projects">Проекты</a>
+                <a href="#tools">Инструменты</a>
+                <a href="mikrotik.html">MikroTik</a>
+            </nav>
 
-        <div class="auth-buttons">
-            <a href="#" class="auth-btn login">Login</a>
-            <a href="#" class="auth-btn register">Register</a>
+            <div class="nav-actions">
+                <a class="main-btn nav-github" href="https://github.com/DmiRials" target="_blank">GitHub Profile</a>
+            </div>
         </div>
     </div>
-</header>
 
-<section class="filter-section">
-    <h2>📚 Рекомендуемые проекты</h2>
+    <header class="hero-header">
+        <section class="hero-content">
+            <h1>Hi, I’m Dmitriy</h1>
+            <p>Sysadmin &amp; Infrastructure Developer</p>
+        </section>
+    </header>
 
-    <div class="filters">
-        <button data-filter="all">All</button>
-        <button data-filter="networking">Networking</button>
-        <button data-filter="devops">DevOps</button>
-        <button data-filter="backend">Backend</button>
-    </div>
+    <main>
+        <section id="projects" class="header-projects">
+            <div class="section-title-wrapper">
+                <div class="section-title-line left"></div>
+                <h2 class="section-title">My Projects</h2>
+                <div class="section-title-line right"></div>
+            </div>
+            <div class="blocks header-blocks">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🌐</span>
+                        <h3 class="color-primary">MikroTik Scripts</h3>
+                    </div>
+                    <p>Script generator for NAT, DNS and port forwarding.</p>
+                    <a href="mikrotik.html">Open</a>
+                </div>
 
-    <div id="projectsContainer" class="blocks"></div>
-</section>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📦</span>
+                        <h3 class="color-white">Project Name</h3>
+                    </div>
+                    <p>Script generator for NAT, DNS and port forwarding.</p>
+                    <a href="#">View More</a>
+                </div>
 
-<footer>
-    © 2026 DmiRials
-</footer>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📦</span>
+                        <h3 class="color-white">Project Name</h3>
+                    </div>
+                    <p>Script generator for NAT, DNS and port forwarding.</p>
+                    <a href="#">View More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="projects-section">
+            <div class="section-title-wrapper">
+                <div class="section-title-line left"></div>
+                <h2 class="section-title">Recommended Tools</h2>
+                <div class="section-title-line right"></div>
+            </div>
+            <div id="projectsContainer" class="blocks"></div>
+        </section>
+    </main>
+
+    <footer id="about">
+        © 2026 DmiRials
+    </footer>
+</div>
 
 <script src="js/app.js"></script>
 </body>

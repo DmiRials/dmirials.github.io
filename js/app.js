@@ -13,7 +13,10 @@ class Project {
     render() {
         return `
             <div class="card" data-category="${this.category}">
-                <h3>${this.icon} ${this.title}</h3>
+                <div class="card-header">
+                    <span class="card-icon">${this.icon}</span>
+                    <h3 class="color-primary">${this.title}</h3>
+                </div>
                 <p>${this.description}</p>
                 <a href="${this.link}" target="_blank">Official Site</a>
             </div>
@@ -35,6 +38,8 @@ class ProjectManager {
     }
 
     render(filter = "all") {
+        if (!this.container) return;
+
         this.container.innerHTML = "";
         this.projects
             .filter(p => filter === "all" || p.category === filter)
@@ -127,39 +132,38 @@ class MatrixBackground {
    Initialization
 ========================= */
 
-const manager = new ProjectManager("projectsContainer");
+if (document.getElementById("projectsContainer")) {
+    const manager = new ProjectManager("projectsContainer");
 
-manager.add(new Project(
-    "RustDesk",
-    "Self-hosted remote desktop solution.",
-    "backend",
-    "https://rustdesk.com/",
-    "🖥"
-));
+    manager.add(new Project(
+        "RustDesk",
+        "Self-hosted remote desktop solution.",
+        "backend",
+        "https://rustdesk.com/",
+        "🖥"
+    ));
 
-manager.add(new Project(
-    "MikroTik",
-    "Networking equipment & RouterOS.",
-    "networking",
-    "https://mikrotik.com/",
-    "🌐"
-));
+    manager.add(new Project(
+        "MikroTik",
+        "Networking equipment & RouterOS.",
+        "networking",
+        "mikrotik.html",
+        "🌐"
+    ));
 
-manager.add(new Project(
-    "Docker Lab",
-    "DevOps infrastructure lab.",
-    "devops",
-    "https://www.docker.com/",
-    "🐳"
-));
+    manager.add(new Project(
+        "Docker Lab",
+        "DevOps infrastructure lab.",
+        "devops",
+        "https://www.docker.com/",
+        "🐳"
+    ));
 
-manager.render();
+    // render all projects by default
+    manager.render();
+}
 
-document.querySelectorAll(".filters button").forEach(btn => {
-    btn.addEventListener("click", () => {
-        manager.render(btn.dataset.filter);
-    });
-});
+// remove filter controls – no event listeners needed
 
 document.querySelectorAll(".auth-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {

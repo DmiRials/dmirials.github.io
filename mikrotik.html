@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MikroTik NAT Script Generator | DmiRials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="tool-page site-page">
+
+<canvas id="matrixCanvas"></canvas>
+
+<div class="page-shell">
+    <div class="global-site-header">
+        <div class="top-nav">
+            <div class="brand">DmiRials</div>
+
+            <nav class="site-nav" aria-label="Global navigation">
+                <a href="index.html">Главная</a>
+                <a href="index.html#projects">Проекты</a>
+                <a href="index.html#tools">Инструменты</a>
+                <a href="mikrotik.html">MikroTik</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="main-btn nav-github" href="https://github.com/DmiRials" target="_blank">GitHub Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="hero-header">
+        <section class="hero-content tool-hero">
+            <h1>MikroTik NAT Script Generator</h1>
+            <p>Generate NAT, DNS and port forwarding rules for your MikroTik router</p>
+        </section>
+    </header>
+
+    <main>
+<section class="mikrotik-section">
+    <div class="script-container">
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="nat">NAT Rules</button>
+            <button class="tab-btn" data-tab="dns">DNS Settings</button>
+            <button class="tab-btn" data-tab="portforward">Port Forwarding</button>
+        </div>
+
+        <!-- NAT Rules Tab -->
+        <div id="nat" class="tab-content active">
+            <form id="natForm" class="nat-form">
+                <div class="form-group">
+                    <label><input type="checkbox" id="natScriptToggle"> Generate as downloadable script file</label>
+                </div>
+                <div class="form-group">
+                    <label for="localNetwork">Local Network IP (e.g., 192.168.1.0/24):</label>
+                    <input 
+                        type="text" 
+                        id="localNetwork" 
+                        placeholder="192.168.1.0/24" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="routerIp">Router IP (e.g., 192.168.1.1):</label>
+                    <input 
+                        type="text" 
+                        id="routerIp" 
+                        placeholder="192.168.1.1" 
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="generate-btn">Generate NAT Rules</button>
+            </form>
+
+            <div id="natOutput" class="output-container" style="display: none;">
+                <h3>Generated Commands</h3>
+                <p class="info-text">Copy and paste these commands into your MikroTik router console:</p>
+                
+                <div class="command-box">
+                    <pre id="natCommandOutput"></pre>
+                </div>
+
+                <button id="natCopyBtn" class="copy-btn">📋 Copy to Clipboard</button>
+            </div>
+        </div>
+
+        <!-- DNS Settings Tab -->
+        <div id="dns" class="tab-content">
+            <form id="dnsForm" class="nat-form">
+                <div class="form-group">
+                    <label><input type="checkbox" id="dnsScriptToggle"> Generate as downloadable script file</label>
+                </div>
+                <div class="form-group">
+                    <label>Выберите DNS серверы:</label>
+                    <div class="dns-columns-wrapper">
+                        <div class="dns-column">
+                            <h4>Основной DNS</h4>
+                            <div class="dns-list">
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="primary-dns" value="8.8.8.8">
+                                    <span>Google<br>8.8.8.8</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="primary-dns" value="1.1.1.1">
+                                    <span>Cloudflare<br>1.1.1.1</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="primary-dns" value="9.9.9.9">
+                                    <span>Quad9<br>9.9.9.9</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="primary-dns" value="77.88.8.8">
+                                    <span>Яндекс<br>77.88.8.8</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="primary-dns" value="208.67.222.222">
+                                    <span>OpenDNS<br>208.67.222.222</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="dns-column">
+                            <h4>Опциональный DNS</h4>
+                            <div class="dns-list">
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="secondary-dns" value="8.8.4.4">
+                                    <span>Google<br>8.8.4.4</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="secondary-dns" value="1.0.0.1">
+                                    <span>Cloudflare<br>1.0.0.1</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="secondary-dns" value="149.112.112.112">
+                                    <span>Quad9<br>149.112.112.112</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="secondary-dns" value="77.88.1.1">
+                                    <span>Яндекс<br>77.88.1.1</span>
+                                </label>
+                                <label class="dns-checkbox-item">
+                                    <input type="checkbox" class="secondary-dns" value="208.67.220.220">
+                                    <span>OpenDNS<br>208.67.220.220</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dnsCustom">Добавить пользовательский DNS (опционально):</label>
+                    <input 
+                        type="text" 
+                        id="dnsCustom" 
+                        placeholder="например, 208.67.222.123"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Время жизни кэша (TTL):</label>
+                    <select id="cacheTtl">
+                        <option value="1d">1 день</option>
+                        <option value="1w" selected>1 неделя</option>
+                    </select>
+                </div>
+
+                <!-- DNS enforcement options -->
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="dnsRedirectToggle">
+                        Перенаправлять все DNS-запросы на роутер
+                    </label>
+                </div>
+                <div id="dnsRedirectSettings" style="display:none;" class="form-group">
+                    <label for="redirectRouterIp">IP роутера/сервер для редиректа:</label>
+                    <input type="text" id="redirectRouterIp" placeholder="например, 192.168.1.1">
+                    <label for="redirectLocalSubnet">Локальная подсеть (CIDR):</label>
+                    <input type="text" id="redirectLocalSubnet" placeholder="например, 192.168.1.0/24">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="dnsFilterToggle">
+                        Блокировать DNS-запросы из интернета
+                    </label>
+                </div>
+                <div id="dnsFilterSettings" style="display:none;" class="form-group">
+                    <label for="filterWanInterface">Интерфейс WAN (или list):</label>
+                    <input type="text" id="filterWanInterface" placeholder="например, WAN">
+                </div>
+
+                <button type="submit" class="generate-btn">Сгенерировать конфигурацию DNS</button>
+            </form>
+
+            <div id="dnsOutput" class="output-container" style="display: none;">
+                <h3>Сгенерированные команды</h3>
+                <p class="info-text">Скопируйте эти команды в консоль вашего маршрутизатора MikroTik:</p>
+                
+                <div class="command-box">
+                    <pre id="dnsCommandOutput"></pre>
+                </div>
+
+                <button id="dnsCopyBtn" class="copy-btn">📋 Копировать в буфер обмена</button>
+            </div>
+        </div>
+
+        <!-- Port Forwarding Tab -->
+        <div id="portforward" class="tab-content">
+            <form id="portforwardForm" class="nat-form">
+                <div class="form-group">
+                    <label><input type="checkbox" id="portScriptToggle"> Generate as downloadable script file</label>
+                </div>
+                <div class="form-group">
+                    <label for="pfRouterIp">Router IP (e.g., 192.168.1.1):</label>
+                    <input 
+                        type="text" 
+                        id="pfRouterIp" 
+                        placeholder="192.168.1.1" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="pfInternalIp">Internal IP (device on network):</label>
+                    <input 
+                        type="text" 
+                        id="pfInternalIp" 
+                        placeholder="192.168.1.10" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="pfExternalPort">External Port (e.g., 8080):</label>
+                    <input 
+                        type="text" 
+                        id="pfExternalPort" 
+                        placeholder="8080" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="pfInternalPort">Internal Port (e.g., 80):</label>
+                    <input 
+                        type="text" 
+                        id="pfInternalPort" 
+                        placeholder="80" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="pfProtocol">Protocol:</label>
+                    <select id="pfProtocol">
+                        <option value="tcp">TCP</option>
+                        <option value="udp">UDP</option>
+                        <option value="tcp,udp">TCP + UDP</option>
+                    </select>
+                </div>
+
+                <!-- hairpin nat options -->
+                <div class="form-group">
+                    <label><input type="checkbox" id="hairpinToggle"> Include hairpin NAT (loopback)</label>
+                </div>
+                <div class="form-group" id="hairpinLanGroup" style="display:none;">
+                    <label for="hairpinLan">LAN network for hairpin (e.g. 192.168.1.0/24):</label>
+                    <input type="text" id="hairpinLan" placeholder="192.168.1.0/24">
+                </div>
+
+                <button type="submit" class="generate-btn">Generate Port Forward Rule</button>
+            </form>
+
+            <div id="portforwardOutput" class="output-container" style="display: none;">
+                <h3>Generated Commands</h3>
+                <p class="info-text">Copy and paste these commands into your MikroTik router console:</p>
+                
+                <div class="command-box">
+                    <pre id="portforwardCommandOutput"></pre>
+                </div>
+
+                <button id="portforwardCopyBtn" class="copy-btn">📋 Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+<footer>
+    © 2026 DmiRials
+</footer>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/mikrotik-generator.js"></script>
+</body>
+</html>
