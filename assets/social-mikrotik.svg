@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title>MikroTik generator preview</title>
+<desc>MikroTik script generator for NAT, DNS, and port forwarding.</desc>
+<rect width="1200" height="630" fill="#020805"/>
+<rect x="56" y="56" width="1088" height="518" rx="24" fill="#06140f" stroke="#00ffaa" stroke-opacity="0.22"/>
+<text x="92" y="128" fill="#00ffaa" font-family="Consolas, 'Courier New', monospace" font-size="28" font-weight="700" letter-spacing="3">ROUTEROS TOOL</text>
+<text x="92" y="246" fill="#f8fafc" font-family="Consolas, 'Courier New', monospace" font-size="72" font-weight="700">MikroTik</text>
+<text x="92" y="328" fill="#f8fafc" font-family="Consolas, 'Courier New', monospace" font-size="72" font-weight="700">Script Generator</text>
+<text x="92" y="420" fill="#97a59b" font-family="Consolas, 'Courier New', monospace" font-size="28">NAT, DNS, port forwarding, validation, and .rsc export.</text>
+<text x="92" y="508" fill="#00ffaa" font-family="Consolas, 'Courier New', monospace" font-size="24">Ready-to-use RouterOS commands</text>
+</svg>

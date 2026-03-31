@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title>DmiRials site preview</title>
+<desc>Infrastructure, networking, automation, and MikroTik tools.</desc>
+<rect width="1200" height="630" fill="#020805"/>
+<rect x="56" y="56" width="1088" height="518" rx="24" fill="#06140f" stroke="#00ffaa" stroke-opacity="0.22"/>
+<text x="92" y="128" fill="#00ffaa" font-family="Consolas, 'Courier New', monospace" font-size="28" font-weight="700" letter-spacing="3">DMIRIALS</text>
+<text x="92" y="244" fill="#f8fafc" font-family="Consolas, 'Courier New', monospace" font-size="72" font-weight="700">Infrastructure</text>
+<text x="92" y="326" fill="#f8fafc" font-family="Consolas, 'Courier New', monospace" font-size="72" font-weight="700">Networking</text>
+<text x="92" y="408" fill="#f8fafc" font-family="Consolas, 'Courier New', monospace" font-size="72" font-weight="700">Automation</text>
+<text x="92" y="500" fill="#97a59b" font-family="Consolas, 'Courier New', monospace" font-size="28">Linux, MikroTik, and practical technical tools.</text>
+</svg>

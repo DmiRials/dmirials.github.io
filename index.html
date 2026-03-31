@@ -2,94 +2,160 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>DmiRials | Tech Portfolio</title>
+    <title>DmiRials | Системный администратор и инфраструктурный инженер</title>
+    <meta id="pageDescription" name="description" content="Персональный сайт Dmitriy: инфраструктура, автоматизация, MikroTik, Linux и полезные сетевые инструменты.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Dmitriy">
+    <meta name="theme-color" content="#020805">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DmiRials">
+    <meta property="og:locale" content="ru_RU" id="ogLocale">
+    <meta property="og:title" content="DmiRials | Системный администратор и инфраструктурный инженер" id="ogTitle">
+    <meta property="og:description" content="Персональный сайт Dmitriy: инфраструктура, автоматизация, MikroTik, Linux и полезные сетевые инструменты." id="ogDescription">
+    <meta property="og:image" content="assets/social-home.svg">
+    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="DmiRials site preview">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DmiRials | Системный администратор и инфраструктурный инженер" id="twitterTitle">
+    <meta name="twitter:description" content="Персональный сайт Dmitriy: инфраструктура, автоматизация, MikroTik, Linux и полезные сетевые инструменты." id="twitterDescription">
+    <meta name="twitter:image" content="assets/social-home.svg">
+    <meta name="twitter:image:alt" content="DmiRials site preview">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="home-page site-page">
-
+<body class="site-page" data-i18n-page-title="home.meta.title" data-i18n-page-description="home.meta.description">
 <canvas id="matrixCanvas"></canvas>
 
 <div class="page-shell">
     <div class="global-site-header">
         <div class="top-nav">
-            <div class="brand">DmiRials</div>
+            <a class="brand-link" href="index.html">
+                <div class="brand">DmiRials</div>
+            </a>
 
-            <nav class="site-nav" aria-label="Global navigation">
-                <a href="index.html">Главная</a>
-                <a href="#projects">Проекты</a>
-                <a href="#tools">Инструменты</a>
-                <a href="mikrotik.html">MikroTik</a>
+            <nav class="site-nav" aria-label="Основная навигация" data-i18n-aria-label="common.navigationLabel">
+                <a href="#hero" data-i18n="common.nav.home">Главная</a>
+                <a href="#expertise" data-i18n="common.nav.expertise">Экспертиза</a>
+                <a href="#projects" data-i18n="common.nav.projects">Проекты</a>
+                <a href="#tools" data-i18n="common.nav.tools">Инструменты</a>
             </nav>
 
             <div class="nav-actions">
-                <a class="main-btn nav-github" href="https://github.com/DmiRials" target="_blank">GitHub Profile</a>
+                <div class="language-switcher" role="group" aria-label="Переключение языка" data-i18n-aria-label="common.languageSwitcherLabel">
+                    <button type="button" class="lang-btn" data-lang="ru" aria-pressed="true">RU</button>
+                    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="main-btn nav-github" href="https://github.com/DmiRials" target="_blank" rel="noopener noreferrer" data-i18n="common.github">GitHub</a>
             </div>
         </div>
     </div>
 
-    <header class="hero-header">
-        <section class="hero-content">
-            <h1>Hi, I’m Dmitriy</h1>
-            <p>Sysadmin &amp; Infrastructure Developer</p>
+    <header id="hero" class="hero-header hero-grid">
+        <section class="hero-copy">
+            <p class="hero-kicker" data-i18n="home.hero.kicker">Infrastructure • Linux • Networking • Automation</p>
+            <h1 data-i18n="home.hero.title">Собираю и автоматизирую инфраструктуру без лишней магии</h1>
+            <p class="hero-lead" data-i18n="home.hero.lead">
+                Я системный администратор и инфраструктурный инженер. Работаю с Linux, сетями,
+                мониторингом и MikroTik, а этот сайт использую как портфолио и площадку для практичных инструментов.
+            </p>
+
+            <div class="hero-actions">
+                <a class="main-btn" href="mikrotik.html" data-i18n="home.hero.primaryAction">Открыть MikroTik Tool</a>
+                <a class="ghost-btn" href="#projects" data-i18n="home.hero.secondaryAction">Посмотреть проекты</a>
+            </div>
         </section>
+
+        <aside class="hero-panel terminal-panel" aria-label="Краткий профиль" data-i18n-aria-label="home.terminal.panelLabel">
+            <div class="terminal-line"><span class="prompt">$</span><span data-i18n="home.terminal.whoami">whoami</span></div>
+            <div class="terminal-answer" data-i18n="home.terminal.whoamiAnswer">Dmitriy / Sysadmin / Infra Dev</div>
+
+            <div class="terminal-line"><span class="prompt">$</span><span data-i18n="home.terminal.stack">stack --current</span></div>
+            <ul class="terminal-list">
+                <li data-i18n="home.terminal.stackItems.servers">Linux servers</li>
+                <li data-i18n="home.terminal.stackItems.mikrotik">MikroTik and RouterOS</li>
+                <li data-i18n="home.terminal.stackItems.automation">Bash, PowerShell, automation</li>
+                <li data-i18n="home.terminal.stackItems.monitoring">Monitoring and network troubleshooting</li>
+            </ul>
+
+            <div class="terminal-line"><span class="prompt">$</span><span data-i18n="home.terminal.focus">focus --now</span></div>
+            <p class="terminal-answer" data-i18n="home.terminal.focusAnswer">Делать полезные, понятные и поддерживаемые инструменты для реальной инфраструктуры.</p>
+        </aside>
     </header>
 
     <main>
-        <section id="projects" class="header-projects">
+        <section id="expertise" class="content-section">
             <div class="section-title-wrapper">
                 <div class="section-title-line left"></div>
-                <h2 class="section-title">My Projects</h2>
+                <h2 class="section-title" data-i18n="home.expertise.title">Чем я занимаюсь</h2>
                 <div class="section-title-line right"></div>
             </div>
-            <div class="blocks header-blocks">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-icon">🌐</span>
-                        <h3 class="color-primary">MikroTik Scripts</h3>
-                    </div>
-                    <p>Script generator for NAT, DNS and port forwarding.</p>
-                    <a href="mikrotik.html">Open</a>
-                </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-icon">📦</span>
-                        <h3 class="color-white">Project Name</h3>
-                    </div>
-                    <p>Script generator for NAT, DNS and port forwarding.</p>
-                    <a href="#">View More</a>
-                </div>
+            <div class="expertise-grid">
+                <article class="feature-card">
+                    <h3 data-i18n="home.expertise.items.network.title">Сетевые сценарии</h3>
+                    <p data-i18n="home.expertise.items.network.text">Настройка MikroTik, сегментация, NAT, DNS, port forwarding, диагностика и приведение конфигураций к предсказуемому виду.</p>
+                </article>
 
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-icon">📦</span>
-                        <h3 class="color-white">Project Name</h3>
-                    </div>
-                    <p>Script generator for NAT, DNS and port forwarding.</p>
-                    <a href="#">View More</a>
-                </div>
+                <article class="feature-card">
+                    <h3 data-i18n="home.expertise.items.infrastructure.title">Инфраструктура и сервисы</h3>
+                    <p data-i18n="home.expertise.items.infrastructure.text">Поднимаю серверы и внутренние сервисы на Linux, собираю self-hosted окружения и поддерживаю их в рабочем состоянии.</p>
+                </article>
+
+                <article class="feature-card">
+                    <h3 data-i18n="home.expertise.items.automation.title">Автоматизация</h3>
+                    <p data-i18n="home.expertise.items.automation.text">Пишу небольшие утилиты и генераторы, которые экономят время и снижают количество ручных ошибок при настройке.</p>
+                </article>
             </div>
         </section>
 
-        <section id="tools" class="projects-section">
+        <section id="projects" class="content-section">
             <div class="section-title-wrapper">
                 <div class="section-title-line left"></div>
-                <h2 class="section-title">Recommended Tools</h2>
+                <h2 class="section-title" data-i18n="home.projects.title">Избранные проекты</h2>
                 <div class="section-title-line right"></div>
             </div>
-            <div id="projectsContainer" class="blocks"></div>
+
+            <div class="project-grid">
+                <article class="project-card featured-project">
+                    <div class="card-eyebrow" data-i18n="home.projects.featured.eyebrow">Featured Tool</div>
+                    <h3 class="color-primary" data-i18n="home.projects.featured.title">MikroTik Script Generator</h3>
+                    <p data-i18n="home.projects.featured.text">Генератор конфигураций для NAT, DNS и port forwarding с валидацией, режимом загрузки .rsc и подсказками по применению.</p>
+                    <ul class="bullet-list">
+                        <li data-i18n="home.projects.featured.points.nat">NAT и masquerade</li>
+                        <li data-i18n="home.projects.featured.points.dns">DNS с redirect и фильтрацией</li>
+                        <li data-i18n="home.projects.featured.points.portForward">Port forwarding и hairpin NAT</li>
+                    </ul>
+                    <a href="mikrotik.html" data-i18n="home.projects.featured.link">Открыть инструмент</a>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-eyebrow" data-i18n="home.projects.ops.eyebrow">Ops</div>
+                    <h3 data-i18n="home.projects.ops.title">Monitoring and Troubleshooting</h3>
+                    <p data-i18n="home.projects.ops.text">Практика диагностики сетевых и серверных проблем: от DNS и firewall до доступности сервисов и маршрутизации.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="tools" class="content-section">
+            <div class="section-title-wrapper">
+                <div class="section-title-line left"></div>
+                <h2 class="section-title" data-i18n="home.tools.title">Полезные инструменты и технологии</h2>
+                <div class="section-title-line right"></div>
+            </div>
+
+            <div id="projectsContainer" class="tool-grid"></div>
         </section>
     </main>
 
-    <footer id="about">
-        © 2026 DmiRials
+    <footer>
+        <span id="currentYear">2026</span> DmiRials • <span data-i18n="common.footer.home">Infrastructure, Networking, Automation</span>
     </footer>
 </div>
 
+<script src="js/shared.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
